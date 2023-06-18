@@ -33,7 +33,7 @@ namespace Paginator
         /// Paginate this collection into pages of (x) items each and returns only the first subset.
         /// </summary>
         /// <typeparam name="T">Type of entity in collection.</typeparam>
-        /// <param name="page">The page to retrive</param>
+        /// <param name="page">The page to retrieve</param>
         /// <param name="perpage">Number of items per page.</param>
         /// <param name="skipCount">Whether to avoid running count query &amp; only get required items.</param>
         /// <param name="enumerable">The current collection.</param>

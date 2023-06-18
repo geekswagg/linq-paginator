@@ -48,7 +48,7 @@ namespace Paginator
         public IList<T> Items { get; set; }
 
         /// <summary>
-        /// Calculates &amp; returns the hashcode of the current object.
+        /// Calculates &amp; returns the hash code of the current object.
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
