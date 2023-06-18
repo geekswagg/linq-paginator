@@ -8,7 +8,7 @@
     public struct PaginationRequest 
     {
         /// <summary>
-        /// Instanciates a request with default values.
+        /// Instantiates a request with default values.
         /// </summary>
         /// <param name="page"></param>
         /// <param name="perPage"></param>

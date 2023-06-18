@@ -40,7 +40,7 @@ namespace Tests
         {
             int perpage = 5;
 
-            var result = nums.Paged(x => x.Equals("0"), 2, perpage, x => x);
+            var result = nums.Paginate(x => x.Equals("0"), 2, perpage, x => x);
             int pages = GetPages(result.TotalItems, perpage);
 
             Assert.AreEqual(2, result.Page);
@@ -51,7 +51,7 @@ namespace Tests
         [Test, TestCaseSource(typeof(Seed), "Pages")]
         public void OrderByProperty(ICollection<Rate> Rates)
         {
-            var result = Rates.ToPaginate(null, 1, 10, x=>x.Value, "desc");
+            var result = Rates.Paginate(null, 1, 10, x=>x.Value, "desc");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Page);
