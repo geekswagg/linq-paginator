@@ -16,10 +16,10 @@ namespace Tests
             int pages = GetPages(Rates.Count, perpage);
             var result = Rates.Paginate(1, perpage);
 
-            Assert.AreEqual(2, result.ItemsPerPage);
-            Assert.AreEqual(1, result.Page);
-            Assert.AreEqual(Rates.Count, result.TotalItems);
-            Assert.AreEqual(pages, result.TotalPages);
+            Assert.That(result.ItemsPerPage, Is.EqualTo(2));
+            Assert.That(result.Page, Is.EqualTo(1));
+            Assert.That(result.TotalItems, Is.EqualTo(Rates.Count));
+            Assert.That(result.TotalPages, Is.EqualTo(pages));
         }
 
         [Test, TestCaseSource(typeof(Seed), "List")]
@@ -29,10 +29,10 @@ namespace Tests
             int pages = GetPages(Rates.Count, perpage);
             var result = Rates.Page();
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.Page);
-            Assert.AreEqual(Rates.Count, result.TotalItems);
-            Assert.AreEqual(pages, result.TotalPages);
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Page, Is.EqualTo(1));
+            Assert.That(result.TotalItems, Is.EqualTo(Rates.Count));
+            Assert.That(result.TotalPages, Is.EqualTo(pages));
         }
 
         [Test, TestCaseSource(typeof(Seed), "NumStrings")]
@@ -43,20 +43,20 @@ namespace Tests
             var result = nums.Paginate(x => x.Equals("0"), 2, perpage, x => x);
             int pages = GetPages(result.TotalItems, perpage);
 
-            Assert.AreEqual(2, result.Page);
-            Assert.AreEqual(5, result.ItemsPerPage);
-            Assert.AreEqual(pages, result.TotalPages);
+            Assert.That(result.Page, Is.EqualTo(2));
+            Assert.That(result.ItemsPerPage, Is.EqualTo(5));
+            Assert.That(result.TotalPages, Is.EqualTo(pages));
         }
 
         [Test, TestCaseSource(typeof(Seed), "Pages")]
         public void OrderByProperty(ICollection<Rate> Rates)
         {
-            var result = Rates.Paginate(null, 1, 10, x=>x.Value, "desc");
+            var result = Rates.Paginate(null, 1, 10, x => x.Value, "desc");
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.Page);
-            Assert.AreEqual(Rates.Count, result.TotalItems);
-            Assert.Greater(result.Items.First().Value, result.Items.Last().Value);
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Page, Is.EqualTo(1));
+            Assert.That(result.TotalItems, Is.EqualTo(Rates.Count));
+            Assert.That(result.Items[0].Value, Is.GreaterThan(result.Items[result.Items.Count - 1].Value));
         }
     }
 }
